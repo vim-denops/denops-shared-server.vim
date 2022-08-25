@@ -1,0 +1,62 @@
+*denops-shared-server.txt*	Denops shared server install/uninstall helper
+
+Author:  Alisue <lambdalisue@gmail.com>
+License: MIT license
+
+=============================================================================
+CONTENTS				*denops-shared-server-contents*
+
+INTRODUCTION				|denops-shared-server-introduction|
+USAGE					|denops-shared-server-usage|
+INTERFACE				|denops-shared-server-interface|
+  FUNCTION				|denops-shared-server-function|
+
+
+=============================================================================
+INTRODUCTION				*denops-shared-server-introduction*
+
+*denops-shared-server.vim* (denops-shared-server) is a helper plugin to
+install/uninstall denops.vim's shared server.
+
+https://github.com/vim-denops/denops.vim
+
+
+=============================================================================
+USAGE					*denops-shared-server-usage*
+
+Call |denops_shared_server#install()| function to install denops-shared-server
+on the system like
+>
+	:call denops_shared_server#install()
+<
+And uninstall it with |denops_shared_server#uninstall()| like
+>
+	:call denops_shared_server#uninstall()
+<
+This plugin uses the following methods to install the shared server on the system.
+
+	OS		Method~
+	Windows		Bundled WinSW v2 (https://github.com/winsw/winsw)
+	macOS		System launchctl (launchd)
+	Linux		System systemctl (systemd)
+
+Note that Windows user requires .NET Framework 4.6.1 (preinstalled since
+Windows 10 November Update version 1511).
+
+=============================================================================
+INTERFACE				*denops-shared-server-interface*
+
+-----------------------------------------------------------------------------
+FUNCTION				*denops-shared-server-function*
+
+					*denops_shared_server#install()*
+denops_shared_server#install()
+	Install the denops shared server on the system.
+
+					*denops_shared_server#uninstall()*
+denops_shared_server#uninstall()
+	Uninstall the denops shared server on the system.
+
+
+=============================================================================
+vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl

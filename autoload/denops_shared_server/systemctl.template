@@ -1,0 +1,10 @@
+[Unit]
+Description = Denops shared server
+
+[Service]
+Type=simple
+Restart = always
+ExecStart={{deno}} run -A --no-check {{script}} --hostname {{hostname}} --port {{port}}
+
+[Install]
+WantedBy=default.target
