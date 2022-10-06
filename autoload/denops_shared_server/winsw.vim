@@ -1,7 +1,8 @@
 let s:file = expand('<sfile>:p')
 let s:name = "denops-shared-server"
-let s:xml_file = expand(printf('~\AppData\Local\denops\%s.xml', s:name))
-let s:exe_file = expand(printf('~\AppData\Local\denops\%s.exe', s:name))
+let s:local_app_data = isdirectory($LOCALAPPDATA) ? '$LOCALAPPDATA' : '~\AppData\Local'
+let s:xml_file = expand(printf('%s\denops\%s.xml', s:local_app_data, s:name))
+let s:exe_file = expand(printf('%s\denops\%s.exe', s:local_app_data, s:name))
 let s:service_file = printf('%s\WinSW-net461.exe', fnamemodify(s:file, ':h'))
 let s:template_file = printf('%s\winsw.template', fnamemodify(s:file, ':h'))
 
