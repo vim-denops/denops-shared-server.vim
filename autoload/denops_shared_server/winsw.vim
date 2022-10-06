@@ -22,7 +22,7 @@ function! denops_shared_server#winsw#install(options) abort
   call writefile(readfile(s:service_file, 'b'), s:exe_file, 'b')
 
   call denops#util#info('install the service')
-  echo system(printf('%s install --user %s', s:exe_file, $USER))
+  echo system(printf('%s install --user "%s"', s:exe_file, $USER))
 
   call denops#util#info('start the service')
   echo system(printf('%s start', s:exe_file))
