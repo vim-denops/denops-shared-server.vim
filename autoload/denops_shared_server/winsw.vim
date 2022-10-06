@@ -2,7 +2,7 @@ let s:file = expand('<sfile>:p')
 let s:name = "denops-shared-server"
 let s:xml_file = expand(printf('~\AppData\Local\denops\%s.xml', s:name))
 let s:exe_file = expand(printf('~\AppData\Local\denops\%s.exe', s:name))
-let s:service_file = printf('%s\WinSW.NET461.exe', fnamemodify(s:file, ':h'))
+let s:service_file = printf('%s\WinSW-net461.exe', fnamemodify(s:file, ':h'))
 let s:template_file = printf('%s\winsw.template', fnamemodify(s:file, ':h'))
 
 function! denops_shared_server#winsw#install(options) abort
