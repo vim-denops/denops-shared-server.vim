@@ -7,4 +7,7 @@
   <env name="PATH" value="{{path}}" />
   <env name="HOME" value="{{home}}" />
   <onfailure action="restart" />
+  <serviceaccount>
+    <prompt>dialog</prompt>
+  </serviceaccount>
 </service>
