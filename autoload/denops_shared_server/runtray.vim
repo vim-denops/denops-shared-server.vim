@@ -19,19 +19,19 @@ function! denops_shared_server#runtray#install(options) abort
   call writefile(content, s:config_file, 'b')
 
   call denops#util#info(printf('download the script `%s`', s:script_file))
-  call s:download_file(s:script_download_url, s:script_file)
-  call s:remove_zone_identifier(s:script_file)
+  call denops_shared_server#runtray#_download_file(s:script_download_url, s:script_file)
+  call denops_shared_server#runtray#_remove_zone_identifier(s:script_file)
 
   call denops#util#info('install to the startup')
-  call s:execute_runtray_command('install')
+  call denops_shared_server#runtray#_execute_script_command('install')
 
   call denops#util#info('start the service')
-  call s:execute_runtray_command('start')
+  call denops_shared_server#runtray#_execute_script_command('start')
 endfunction
 
 function! denops_shared_server#runtray#uninstall() abort
   call denops#util#info('uninstall from the startup')
-  call s:execute_runtray_command('uninstall')
+  call denops_shared_server#runtray#_execute_script_command('uninstall')
 
   call denops#util#info(printf('delete the configuration file `%s`', s:config_file))
   call delete(s:config_file)
@@ -40,14 +40,14 @@ function! denops_shared_server#runtray#uninstall() abort
   call delete(s:script_file)
 endfunction
 
-function s:download_file(url, outfile) abort
+function denops_shared_server#runtray#_download_file(url, outfile) abort
   echo system(printf('%s Invoke-WebRequest -URI "%s" -OutFile "%s"', s:ps_cmd, a:url, a:outfile))
 endfunction
 
-function s:remove_zone_identifier(file) abort
+function denops_shared_server#runtray#_remove_zone_identifier(file) abort
   echo system(printf('%s Unblock-File "%s"', s:ps_cmd, a:file))
 endfunction
 
-function s:execute_runtray_command(command) abort
+function denops_shared_server#runtray#_execute_script_command(command) abort
   echo system(printf('%s "%s" %s', s:ps_cmd, s:script_file, a:command))
 endfunction
