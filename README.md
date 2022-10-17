@@ -21,13 +21,16 @@ And uninstall the server with `denops_shared_server#uninstall()` like
 
 This plugin uses the following methods to install the shared server on the system.
 
-| OS      | Method                                             |
-| ------- | -------------------------------------------------- |
-| Windows | Bundled [WinSW v2](https://github.com/winsw/winsw) |
-| macOS   | System's `launchctl` (launchd)                     |
-| Linux   | System's `systemctl` (systemd)                     |
+| OS      | Method                                       |
+| ------- | -------------------------------------------- |
+| Windows | System's `powershell.exe` and [runtray-ps][] |
+| macOS   | System's `launchctl` (launchd)               |
+| Linux   | System's `systemctl` (systemd)               |
 
-Note that Windows user requires .NET Framework 4.6.1 (preinstalled since Windows 10 November Update version 1511).
+Note that Windows user requires PowerShell 3.0 (preinstalled since Windows 8).
+[runtray-ps][]'s script file is automatically downloaded.
+
+[runtray-ps]: https://github.com/Milly/runtray-ps
 
 ## License
 
