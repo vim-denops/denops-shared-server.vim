@@ -10,18 +10,18 @@ function! denops_shared_server#install() abort
         \ 'hostname': hostname,
         \ 'port': port,
         \}
-  if executable('launchctl')
+  if has('win32') && executable('powershell.exe')
+    call denops_shared_server#runtray#install(options)
+  elseif executable('launchctl')
     call denops_shared_server#launchctl#install(options)
   elseif executable('systemctl')
     call denops_shared_server#systemctl#install(options)
-  elseif has('win32')
-    call denops_shared_server#winsw#install(options)
   else
     call denops#util#error('This platform is not supported. Please configure denops-shared-server manually.')
     return
   endif
-  call denops#util#info('wait 1 second for the shared server startup...')
-  sleep 1
+  call denops#util#info('wait 5 second for the shared server startup...')
+  sleep 5
   call denops#util#info('connect to the shared server')
   call denops#server#connect(g:denops_server_addr)
   call denops#util#info('stop the local server')
@@ -29,12 +29,12 @@ function! denops_shared_server#install() abort
 endfunction
 
 function! denops_shared_server#uninstall() abort
-  if executable('launchctl')
+  if has('win32') && executable('powershell.exe')
+    call denops_shared_server#runtray#uninstall()
+  elseif executable('launchctl')
     call denops_shared_server#launchctl#uninstall()
   elseif executable('systemctl')
     call denops_shared_server#systemctl#uninstall()
-  elseif has('win32')
-    call denops_shared_server#winsw#uninstall()
   else
     call denops#util#error('This platform is not supported. Please configure denops-shared-server manually.')
     return

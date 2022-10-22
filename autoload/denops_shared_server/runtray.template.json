@@ -1,0 +1,10 @@
+{
+    "name": "denops-shared-server",
+    "description": "denops.vim shared server",
+    "executable": "{{deno}}",
+    "arguments": [
+        "run", "-A", "--no-check", "{{script}}",
+        "--hostname", "{{hostname}}",
+        "--port", "{{port}}"
+    ]
+}
