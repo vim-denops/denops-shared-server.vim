@@ -23,7 +23,7 @@ function! denops_shared_server#install() abort
   call denops#util#info('wait 5 second for the shared server startup...')
   sleep 5
   call denops#util#info('connect to the shared server')
-  call denops#server#connect(g:denops_server_addr)
+  call denops#server#connect()
   call denops#util#info('stop the local server')
   call denops#server#stop()
 endfunction
