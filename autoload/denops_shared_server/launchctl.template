@@ -11,6 +11,7 @@
       <string>run</string>
       <string>-A</string>
       <string>--no-check</string>
+      <string>--unstable</string>
       <string>{{script}}</string>
       <string>--hostname</string>
       <string>{{hostname}}</string>

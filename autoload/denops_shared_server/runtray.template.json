@@ -3,7 +3,7 @@
     "description": "denops.vim shared server",
     "executable": "{{deno}}",
     "arguments": [
-        "run", "-A", "--no-check", "{{script}}",
+        "run", "-A", "--no-check", "--unstable", "{{script}}",
         "--hostname", "{{hostname}}",
         "--port", "{{port}}"
     ]
