@@ -9,9 +9,7 @@
     <array>
       <string>{{deno}}</string>
       <string>run</string>
-      <string>-A</string>
-      <string>--no-check</string>
-      <string>--unstable</string>
+      {{deno_args}}
       <string>{{script}}</string>
       <string>--hostname</string>
       <string>{{hostname}}</string>
