@@ -36,7 +36,8 @@ And uninstall it with |denops_shared_server#uninstall()| like
 This plugin uses the following methods to install the shared server on the system.
 
 	OS		Method~
-	Windows		Bundled WinSW v2 (https://github.com/winsw/winsw)
+	Windows		System's `powershell.exe` and runtray-ps
+			(https://github.com/Milly/runtray-ps)
 	macOS		System launchctl (launchd)
 	Linux		System systemctl (systemd)
 
