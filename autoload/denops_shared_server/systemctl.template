@@ -4,7 +4,7 @@ Description = Denops shared server
 [Service]
 Type=simple
 Restart = always
-ExecStart={{deno}} run -A --no-check --unstable {{script}} --hostname {{hostname}} --port {{port}}
+ExecStart={{deno}} run {{deno_args}} {{script}} --hostname {{hostname}} --port {{port}}
 
 [Install]
 WantedBy=default.target
