@@ -11,30 +11,30 @@ function! denops_shared_server#systemctl#install(options) abort
         \ 'port': a:options.port,
         \ 'deno_args': join(g:denops#server#deno_args, ' '),
         \})
-  call denops#util#info(printf('create the unit file `%s`', s:unit_file))
+  call denops_shared_server#util#info(printf('create the unit file `%s`', s:unit_file))
   call mkdir(fnamemodify(s:unit_file, ':h'), 'p')
   call writefile(content, s:unit_file, 'b')
 
-  call denops#util#info(printf('enable the unit `%s`', s:name))
+  call denops_shared_server#util#info(printf('enable the unit `%s`', s:name))
   echo system(printf('systemctl --user enable %s.service', s:name))
 
-  call denops#util#info(printf('start the unit `%s`', s:name))
+  call denops_shared_server#util#info(printf('start the unit `%s`', s:name))
   echo system(printf('systemctl --user start %s.service', s:name))
 endfunction
 
 function! denops_shared_server#systemctl#uninstall() abort
-  call denops#util#info(printf('stop the unit `%s`', s:name))
+  call denops_shared_server#util#info(printf('stop the unit `%s`', s:name))
   echo system(printf('systemctl --user stop %s.service', s:name))
 
-  call denops#util#info(printf('disable the unit `%s`', s:name))
+  call denops_shared_server#util#info(printf('disable the unit `%s`', s:name))
   echo system(printf('systemctl --user disable %s.service', s:name))
 
-  call denops#util#info(printf('delete the unit file `%s`', s:unit_file))
+  call denops_shared_server#util#info(printf('delete the unit file `%s`', s:unit_file))
   call delete(s:unit_file)
 
-  call denops#util#info('daemon reload')
+  call denops_shared_server#util#info('daemon reload')
   echo system('systemctl --user daemon-reload')
 
-  call denops#util#info('reset failed')
+  call denops_shared_server#util#info('reset failed')
   echo system('systemctl --user reset-failed')
 endfunction
