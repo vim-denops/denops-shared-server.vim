@@ -14,29 +14,29 @@ function! denops_shared_server#runtray#install(options) abort
         \ 'hostname': a:options.hostname,
         \ 'port': a:options.port,
         \})
-  call denops#util#info(printf('create the configuration file `%s`', s:config_file))
+  call denops_shared_server#util#info(printf('create the configuration file `%s`', s:config_file))
   call mkdir(fnamemodify(s:config_file, ':h'), 'p')
   call writefile(content, s:config_file, 'b')
 
-  call denops#util#info(printf('download the script `%s`', s:script_file))
+  call denops_shared_server#util#info(printf('download the script `%s`', s:script_file))
   call denops_shared_server#runtray#_download_file(s:script_download_url, s:script_file)
   call denops_shared_server#runtray#_remove_zone_identifier(s:script_file)
 
-  call denops#util#info('install to the startup')
+  call denops_shared_server#util#info('install to the startup')
   call denops_shared_server#runtray#_execute_script_command('install')
 
-  call denops#util#info('start the service')
+  call denops_shared_server#util#info('start the service')
   call denops_shared_server#runtray#_execute_script_command('start')
 endfunction
 
 function! denops_shared_server#runtray#uninstall() abort
-  call denops#util#info('uninstall from the startup')
+  call denops_shared_server#util#info('uninstall from the startup')
   call denops_shared_server#runtray#_execute_script_command('uninstall')
 
-  call denops#util#info(printf('delete the configuration file `%s`', s:config_file))
+  call denops_shared_server#util#info(printf('delete the configuration file `%s`', s:config_file))
   call delete(s:config_file)
 
-  call denops#util#info(printf('delete the script `%s`', s:script_file))
+  call denops_shared_server#util#info(printf('delete the script `%s`', s:script_file))
   call delete(s:script_file)
 endfunction
 
