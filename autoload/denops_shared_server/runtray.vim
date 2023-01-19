@@ -13,6 +13,7 @@ function! denops_shared_server#runtray#install(options) abort
         \ 'script': escape(a:options.script, '\'),
         \ 'hostname': a:options.hostname,
         \ 'port': a:options.port,
+        \ 'deno_args': json_encode(g:denops#server#deno_args)[2:-3],
         \})
   call denops#util#info(printf('create the configuration file `%s`', s:config_file))
   call mkdir(fnamemodify(s:config_file, ':h'), 'p')

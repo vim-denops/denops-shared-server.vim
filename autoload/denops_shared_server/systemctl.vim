@@ -1,5 +1,5 @@
 let s:file = expand('<sfile>:p')
-let s:name = "denops-shared-server"
+let s:name = 'denops-shared-server'
 let s:unit_file = expand(printf('~/.config/systemd/user/%s.service', s:name))
 let s:template_file = printf('%s/systemctl.template', fnamemodify(s:file, ':h'))
 
@@ -9,6 +9,7 @@ function! denops_shared_server#systemctl#install(options) abort
         \ 'script': a:options.script,
         \ 'hostname': a:options.hostname,
         \ 'port': a:options.port,
+        \ 'deno_args': join(g:denops#server#deno_args, ' '),
         \})
   call denops#util#info(printf('create the unit file `%s`', s:unit_file))
   call mkdir(fnamemodify(s:unit_file, ':h'), 'p')
