@@ -58,6 +58,9 @@ denops_shared_server#install()
 denops_shared_server#uninstall()
 	Uninstall the denops shared server on the system.
 
+					*denops_shared_server#restart()*
+denops_shared_server#restart()
+	Restart the denops shared server on the system.
 
 =============================================================================
 vim:tw=78:fo=tcq2mM:ts=8:ft=help:norl
