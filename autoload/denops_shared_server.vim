@@ -31,6 +31,14 @@ function! denops_shared_server#uninstall() abort
   call denops_shared_server#{command}#uninstall()
 endfunction
 
+function! denops_shared_server#restart() abort
+  let command = s:detect_command()
+  if empty(command)
+    return
+  endif
+  call denops_shared_server#{command}#restart()
+endfunction
+
 function! denops_shared_server#_render(template, context) abort
   let content = join(a:template, "\n")
   for [key, value] in items(a:context)

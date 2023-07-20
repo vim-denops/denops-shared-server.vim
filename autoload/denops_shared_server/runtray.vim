@@ -41,6 +41,11 @@ function! denops_shared_server#runtray#uninstall() abort
   call delete(s:script_file)
 endfunction
 
+function! denops_shared_server#runtray#restart() abort
+  call denops_shared_server#util#info('restart the service')
+  call denops_shared_server#runtray#_execute_script_command('restart')
+endfunction
+
 function denops_shared_server#runtray#_download_file(url, outfile) abort
   echo system(printf('%s Invoke-WebRequest -URI "%s" -OutFile "%s"', s:ps_cmd, a:url, a:outfile))
 endfunction
