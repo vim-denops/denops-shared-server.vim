@@ -1,10 +1,11 @@
 [Unit]
 Description = Denops shared server
+Documentation = https://github.com/vim-denops/denops.vim
 
 [Service]
-Type=simple
+Type = simple
 Restart = always
-ExecStart={{deno}} run {{deno_args}} {{script}} --hostname {{hostname}} --port {{port}}
+ExecStart = {{deno}} run {{deno_args}} {{script}} --hostname {{hostname}} --port {{port}}
 
 [Install]
 WantedBy=default.target
