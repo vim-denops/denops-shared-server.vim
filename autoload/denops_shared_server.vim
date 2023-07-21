@@ -66,7 +66,7 @@ function! s:detect_command() abort
     let s:command = 'systemctl'
   else
     call denops_shared_server#util#error('This platform is not supported. Please configure denops-shared-server manually.')
-    let s:command = ''
+    return ''
   endif
   return s:command
 endfunction
