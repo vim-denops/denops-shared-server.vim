@@ -32,3 +32,11 @@ function! denops_shared_server#launchctl#uninstall() abort
   call denops_shared_server#util#info(printf('delete the plist `%s`', s:plist_file))
   call delete(s:plist_file)
 endfunction
+
+function! denops_shared_server#launchctl#restart() abort
+  call denops_shared_server#util#info(printf('unload the plist `%s`', s:plist_file))
+  call system(printf('launchctl unload %s', s:plist_file))
+
+  call denops_shared_server#util#info(printf('load the plist `%s`', s:plist_file))
+  echo system(printf('launchctl load -w %s', s:plist_file))
+endfunction

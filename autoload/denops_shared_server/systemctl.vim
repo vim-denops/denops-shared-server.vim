@@ -38,3 +38,8 @@ function! denops_shared_server#systemctl#uninstall() abort
   call denops_shared_server#util#info('reset failed')
   echo system('systemctl --user reset-failed')
 endfunction
+
+function! denops_shared_server#systemctl#restart() abort
+  call denops_shared_server#util#info(printf('restart the unit `%s`', s:name))
+  echo system(printf('systemctl --user restart %s.service', s:name))
+endfunction

@@ -10,5 +10,6 @@
         "{{hostname}}",
         "--port",
         "{{port}}"
-    ]
+    ],
+    "autorestart": true
 }

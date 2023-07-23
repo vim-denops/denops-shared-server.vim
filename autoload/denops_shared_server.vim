@@ -3,6 +3,10 @@ function! denops_shared_server#install() abort
     call denops_shared_server#util#error('No denops shared server address (g:denops_server_addr) is given.')
     return
   endif
+  let command = s:detect_command()
+  if empty(command)
+    return
+  endif
   let [hostname, port] = s:parse_server_addr(g:denops_server_addr)
   let options = {
         \ 'deno': exepath(g:denops#deno),
@@ -10,16 +14,7 @@ function! denops_shared_server#install() abort
         \ 'hostname': hostname,
         \ 'port': port,
         \}
-  if has('win32') && executable('powershell.exe')
-    call denops_shared_server#runtray#install(options)
-  elseif executable('launchctl')
-    call denops_shared_server#launchctl#install(options)
-  elseif executable('systemctl')
-    call denops_shared_server#systemctl#install(options)
-  else
-    call denops_shared_server#util#error('This platform is not supported. Please configure denops-shared-server manually.')
-    return
-  endif
+  call denops_shared_server#{command}#install(options)
   call denops_shared_server#util#info('wait 5 second for the shared server startup...')
   sleep 5
   call denops_shared_server#util#info('connect to the shared server')
@@ -29,16 +24,19 @@ function! denops_shared_server#install() abort
 endfunction
 
 function! denops_shared_server#uninstall() abort
-  if has('win32') && executable('powershell.exe')
-    call denops_shared_server#runtray#uninstall()
-  elseif executable('launchctl')
-    call denops_shared_server#launchctl#uninstall()
-  elseif executable('systemctl')
-    call denops_shared_server#systemctl#uninstall()
-  else
-    call denops_shared_server#util#error('This platform is not supported. Please configure denops-shared-server manually.')
+  let command = s:detect_command()
+  if empty(command)
     return
   endif
+  call denops_shared_server#{command}#uninstall()
+endfunction
+
+function! denops_shared_server#restart() abort
+  let command = s:detect_command()
+  if empty(command)
+    return
+  endif
+  call denops_shared_server#{command}#restart()
 endfunction
 
 function! denops_shared_server#_render(template, context) abort
@@ -55,4 +53,20 @@ function! s:parse_server_addr(addr) abort
     throw printf('[denops-shared-server] Server address must follow `{hostname}:{port}` format but `%s` is given', a:addr)
   endif
   return [parts[0], parts[1]]
+endfunction
+
+function! s:detect_command() abort
+  if exists('s:command')
+    return s:command
+  elseif has('win32') && executable('powershell.exe')
+    let s:command = 'runtray'
+  elseif executable('launchctl')
+    let s:command = 'launchctl'
+  elseif executable('systemctl')
+    let s:command = 'systemctl'
+  else
+    call denops_shared_server#util#error('This platform is not supported. Please configure denops-shared-server manually.')
+    return ''
+  endif
+  return s:command
 endfunction
