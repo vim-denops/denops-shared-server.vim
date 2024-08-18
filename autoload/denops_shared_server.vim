@@ -17,10 +17,14 @@ function! denops_shared_server#install() abort
   call denops_shared_server#{command}#install(options)
   call denops_shared_server#util#info('wait 5 second for the shared server startup...')
   sleep 5
+  if denops#server#status() !=# "stopped"
+    augroup denops_shared_server_install
+      autocmd!
+      autocmd User DenopsClosed ++once ++nested call s:stop_local_server()
+    augroup END
+  endif
   call denops_shared_server#util#info('connect to the shared server')
-  call denops#server#connect()
-  call denops_shared_server#util#info('stop the local server')
-  call denops#server#stop()
+  call denops#server#reconnect()
 endfunction
 
 function! denops_shared_server#uninstall() abort
@@ -69,4 +73,9 @@ function! s:detect_command() abort
     return ''
   endif
   return s:command
+endfunction
+
+function! s:stop_local_server() abort
+  call denops_shared_server#util#info('stop the local server')
+  call denops#server#stop()
 endfunction

@@ -1,8 +1,12 @@
 # 🎃 denops-shared-server
 
-This is a helper Vim plugin to install/uninstall [denops.vim][]'s shared server.
+[![Denops.vim 7.0.0 or above]][Denops.vim-v7.0.0]
 
-[denops.vim]: https://github.com/vim-denops/denops.vim
+This is a helper Vim plugin to install/uninstall [Denops.vim][]'s shared server.
+
+[Denops.vim]: https://github.com/vim-denops/denops.vim
+[Denops.vim-v7.0.0]: https://github.com/vim-denops/denops.vim/releases/tag/v7.0.0
+[Denops.vim 7.0.0 or above]: https://img.shields.io/badge/Denops.vim-Support%207.0.0-yellowgreen.svg
 
 ## Usage
 
